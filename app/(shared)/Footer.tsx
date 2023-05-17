@@ -5,7 +5,7 @@ const Footer = () => {
     <footer className="px-10 py-10 bg-wh-900 text-wh-50 ">
       <div className="justify-between gap-16 mx-auto sm:flex">
         <div className="mt-16 sm:mt-0 basis-1/2">
-          <h4 className="font-bold">Blog of The Future</h4>
+          <h4 className="font-bold">Where Is Your Homeland?</h4>
           <p className="my-5">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, veritatis dolores earum placeat rem culpa
             ducimus suscipit doloribus autem assumenda reprehenderit sapiente praesentium voluptate perspiciatis
