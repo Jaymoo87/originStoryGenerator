@@ -12,13 +12,15 @@ const openai = new OpenAIApi(configuration);
 
 export async function POST(request: Request) {
   try {
-    const { title, role } = await request.json();
+    ///  add different variables for character stats and other information to send to chatgpt request. ex: {var1, var2, role}
+
+    const { role } = await request.json();
     const aiRes: AxiosResponse<CreateChatCompletionResponse, any> = await openai.createChatCompletion({
       model: 'gpt-3.5-turbo',
       messages: [
         {
           role: 'user',
-          content: `Create a dungeons and dragons character origin story with html tags from this title: ${title}`,
+          content: `Create a dungeons and dragons character origin story with html tags `,
         },
         {
           role: 'system',
