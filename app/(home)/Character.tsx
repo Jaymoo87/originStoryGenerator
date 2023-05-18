@@ -8,8 +8,9 @@ import { characterOptions } from '@/public/data/CharacterData';
 import CharacterOriginStory from '../(shared)/CharacterOriginStory';
 
 type Props = {
+  setContent: (content: string) => void;
   editor: Editor | null;
-
+  content: string;
   characterName: string;
   age: number;
   race: string;
@@ -17,7 +18,9 @@ type Props = {
   homeland: string;
 };
 
-const Character = ({ editor }: Props) => {
+const Character = ({ content, editor, setContent }: Props) => {
+  const [fieldError, setFieldError] = useState<string>('');
+
   const [characterName, setCharacterName] = useState<string>('');
   const [age, setAge] = useState<number>(0);
   const [race, setRace] = useState<string>('');
@@ -27,7 +30,33 @@ const Character = ({ editor }: Props) => {
   const { raceOptions, classOptions, homelandOptions } = characterOptions;
 
   const submitCharacterData = () => {};
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
+    if (characterName === '' || age === null || race === '' || characterClass === '' || homeland === '')
+      setFieldError('All Fields Are Required');
+
+    if (editor?.isEmpty) return;
+
+    const response = await fetch(`${process.env.NEXT_PUBLIC_URL}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        age,
+        race,
+        characterName,
+        characterClass,
+        homeland,
+        content: content,
+      }),
+    });
+    const data = await response.json();
+
+    setContent(data.content);
+    editor?.commands.setContent(data.content);
+  };
   return (
     <>
       <form action="submit" className="grid justify-items-center">
@@ -37,7 +66,7 @@ const Character = ({ editor }: Props) => {
           </label>
           <input
             value={characterName}
-            className="p-1 mx-2 mb-4 rounded-lg shadow-xl"
+            className="p-1 mx-2 mb-4 text-black rounded-lg shadow-xl"
             onChange={(e) => setCharacterName(e.target.value)}
             placeholder="Name"
             id="name"
@@ -48,7 +77,7 @@ const Character = ({ editor }: Props) => {
           </label>
           <input
             value={age}
-            className="p-1 mx-2 mb-4 rounded-lg shadow-xl"
+            className="p-1 mx-2 mb-4 text-black rounded-lg shadow-xl"
             onChange={(e) => setAge(Number(e.target.value))}
             placeholder="Age"
             id="age"
@@ -59,7 +88,7 @@ const Character = ({ editor }: Props) => {
           </label>
           <Select
             options={raceOptions}
-            onChange={(e) => setRace('')}
+            onChange={(e) => setRace(raceOptions.value)}
             getOptionLabel={(option) => `${option.label} --> ${option.special}`}
             className="p-1 mx-2 mb-4 font-bold text-black shadow-xl"
           />
@@ -74,18 +103,9 @@ const Character = ({ editor }: Props) => {
           <label className="mx-3 font-bold "> Homeland </label>
           <Select options={homelandOptions} className="p-1 mx-2 mb-4 font-bold text-black shadow-xl" />
         </div>
-        <div className="">
-          <button
-            type="button"
-            onClick={submitCharacterData}
-            className="h-10 p-2 font-bold text-black bg-green-400 cursor-pointer rounded-xl"
-          >
-            Generate Origin Story
-          </button>
-        </div>
       </form>
       <CharacterOriginStory
-        editor={editor}
+        content={content}
         characterName={characterName}
         characterClass={characterClass}
         age={age}

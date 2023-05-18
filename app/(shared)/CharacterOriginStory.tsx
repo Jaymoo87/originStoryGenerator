@@ -55,20 +55,21 @@ const CharacterOriginStory = ({ characterName, age, race, characterClass, homela
   };
 
   return (
-    <div className="p-3 mb-3 border-2 rounded-md bg-wh-50">
-      <h4 className="flex justify-between p-0 m-0 mb-2">Hi! Adjust My Attitude If You Need To</h4>
-      <div className="flex gap-5 justify-betweeen">
+    <div className="p-3 mb-3 rounded-md ">
+      <h4 className="flex justify-center p-0 m-0 mb-2">Hi! Adjust My Attitude If You Need To</h4>
+      <small className="flex justify-center">(tell the origin story creator how you would like it to act)</small>
+      <div className="flex justify-center gap-5">
         <input
           placeholder="Role"
           onChange={(e) => setRole(e.target.value)}
           value={role}
-          className="w-full px-3 py-1 border-2 rounded-md bg-wh-50"
+          className="w-1/3 px-3 py-1 text-center text-black border-2 "
         />
         <button type="button" onClick={postAiContent}>
           <RocketLaunchIcon className="w-8 h-8 text-accent-orange hover:text-wh-300" />
         </button>
       </div>
-      <span className="flex justify-start p-0 mt-3 text-sm">
+      <span className="flex justify-center p-0 mt-3 text-sm">
         powered by{' '}
         <Link href="https://openai.com/">
           {' '}
