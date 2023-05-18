@@ -16,7 +16,7 @@ const Navbar = (props: Props) => {
         <nav className="z-10 flex items-center justify-between w-full p-10 bg-wh-900 text-wh-10">
           <div className="z-10 flex items-center justify-between gap-10">
             <Link href={'/'}>Home</Link>
-            <Link href={'/'}> Origin Stories</Link>
+            <Link href={'/'}>Origin Stories</Link>
             <Link href={'/'}>Create an Origin Story</Link>
           </div>
           <div className="z-10 hidden sm:block">

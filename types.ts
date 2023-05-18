@@ -5,6 +5,7 @@ export type CharacterData = {
   race: string;
   weapon: string;
   creator: string;
+  homeland: string;
   image: string;
   originStory: string;
   createdAt: string;
