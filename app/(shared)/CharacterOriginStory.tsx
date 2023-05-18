@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 
 import Link from 'next/link';
 
-import { Editor } from '@tiptap/react';
+import { Editor, useEditor } from '@tiptap/react';
 
 import { RocketLaunchIcon } from '@heroicons/react/24/solid';
 import { SiOpenai } from 'react-icons/si';
+import StarterKit from '@tiptap/starter-kit';
 
 type Props = {
-  editor: Editor | null;
-  setCharacter: (character: string) => void;
+  content: string;
   characterName: string;
   age: number;
   race: string;
@@ -17,8 +17,19 @@ type Props = {
   homeland: string;
 };
 
-const CharacterOriginStory = ({ editor, setCharacter, characterName, age, race, characterClass, homeland }: Props) => {
+const CharacterOriginStory = ({ characterName, age, race, characterClass, homeland }: Props) => {
   const [role, setRole] = useState<string>('I am a dungeon master that loves origin stories.');
+  const [content, setContent] = useState<string>('');
+
+  const editor = useEditor({
+    extensions: [StarterKit],
+    content,
+    editorProps: {
+      attributes: {
+        class: 'prose prose-sm xl:prose-2xl focus:outline-none w-full max-w-full shadow-md shadow-lg p-4 rounded-md',
+      },
+    },
+  });
 
   if (!editor) return null;
   const postAiContent = async () => {
@@ -34,12 +45,13 @@ const CharacterOriginStory = ({ editor, setCharacter, characterName, age, race, 
         characterClass,
         homeland,
         role,
+        content,
       }),
     });
     const data = await response.json();
 
     editor.chain().focus().setContent(data.content).run();
-    setCharacter(data.content);
+    setContent(data.content);
   };
 
   return (

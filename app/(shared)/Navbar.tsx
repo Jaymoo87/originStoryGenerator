@@ -12,12 +12,18 @@ type Props = {};
 const Navbar = (props: Props) => {
   return (
     <header className="mb-5">
-      <div className="relative w-auto h-48 overflow-hidden bg-[url(../public/assets/bannerBackground.png)] bg-repeat bg-contain z-9 basis-full ">
+      <div className="relative w-auto h-48 overflow-hidden bg-[url(../public/assets/cloudbanner.png)] opacity-60 bg-repeat bg-contain z-9 basis-full ">
         <nav className="z-10 flex items-center justify-between w-full p-10 bg-wh-900 text-wh-10">
           <div className="z-10 flex items-center justify-between gap-10">
-            <Link href={'/'}>Home</Link>
-            <Link href={'/'}>Origin Stories</Link>
-            <Link href={'/'}>Create an Origin Story</Link>
+            <Link href={'/'} className="font-bold transition-all hover:text-3xl hover:text-yellow-200 ">
+              Home
+            </Link>
+            <Link href={'/'} className="font-bold transition-all hover:text-3xl hover:text-yellow-200">
+              Origin Stories
+            </Link>
+            <Link href={'/'} className="font-bold transition-all hover:text-3xl hover:text-yellow-200">
+              Create an Origin Story
+            </Link>
           </div>
           <div className="z-10 hidden sm:block">
             <SocialLinks />
