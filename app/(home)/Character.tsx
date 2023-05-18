@@ -1,16 +1,11 @@
-'use-client';
+'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
+import { characterOptions } from '@/public/data/CharacterData';
 
-// import Select from 'react-select';
+import Select from 'react-select';
 
 type Props = {};
-
-const raceOptions = [
-  { value: 'human', label: 'Human' },
-  { value: 'elf', label: 'Elf' },
-  { value: 'dragonborn', label: 'Dragonborn' },
-];
 
 const Character = (props: Props) => {
   return (
@@ -29,13 +24,18 @@ const Character = (props: Props) => {
         <label className="mx-3" htmlFor="race">
           race
         </label>
-        {/* <Select options={raceOptions} className="p-1 mx-2 mb-4 rounded-lg" /> */}
+        <Select
+          options={characterOptions.raceOptions}
+          getOptionLabel={(option) => `${option.label} --> ${option.special}`}
+          className="p-1 mx-2 mb-4 font-bold text-black rounded-lg"
+        />
 
         <label className="mx-3">class</label>
-        <select defaultValue={0} className="p-1 mx-2 mb-4 rounded-lg ">
-          <option value={0}>select a class</option>
-          <option value="mage">Mage</option>
-        </select>
+        <Select
+          options={characterOptions.classOptions}
+          getOptionLabel={(option) => `${option.label} --> ${option.special}`}
+          className="p-1 mx-2 mb-4 font-bold text-black rounded-lg "
+        />
 
         <label className="mx-3"> homeland </label>
         <select className="p-1 mx-2 mb-4 rounded-lg">
