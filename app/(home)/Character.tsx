@@ -1,7 +1,7 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-import Select from 'react-select';
+import ReactSelect, { MultiValue, SingleValue } from 'react-select';
 import { Editor } from '@tiptap/react';
 
 import { characterOptions } from '@/public/data/CharacterData';
@@ -18,8 +18,20 @@ type Props = {
   homeland: string;
 };
 
+interface ReactSelectOptions {
+  label: string;
+  value: string;
+}
+type MultiOptions = MultiValue<ReactSelectOptions>;
+type SingleOption = SingleValue<ReactSelectOptions>;
+
 const Character = ({ content, editor, setContent }: Props) => {
+  const [selectRaceOptions, setSelectRaceOptions] = useState<SingleOption>();
+
   const [fieldError, setFieldError] = useState<string>('');
+  const [raceValue, setRaceValue] = useState<string>('');
+  const [classValue, setClassValue] = useState<string>('');
+  const [homelandValue, setHomelandValue] = useState<string>('');
 
   const [characterName, setCharacterName] = useState<string>('');
   const [age, setAge] = useState<number>(0);
@@ -29,34 +41,18 @@ const Character = ({ content, editor, setContent }: Props) => {
 
   const { raceOptions, classOptions, homelandOptions } = characterOptions;
 
-  const submitCharacterData = () => {};
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const onRaceChange = (e: any) => {};
 
-    if (characterName === '' || age === null || race === '' || characterClass === '' || homeland === '')
-      setFieldError('All Fields Are Required');
-
-    if (editor?.isEmpty) return;
-
-    const response = await fetch(`${process.env.NEXT_PUBLIC_URL}`, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        age,
-        race,
-        characterName,
-        characterClass,
-        homeland,
-        content: content,
-      }),
-    });
-    const data = await response.json();
-
-    setContent(data.content);
-    editor?.commands.setContent(data.content);
+  const onClassChange = (e: any) => {
+    const value = e.target.value;
+    setClassValue(value);
   };
+
+  const onHomelandChange = (e: any) => {
+    const value = e.target.value;
+    setHomelandValue(value);
+  };
+
   return (
     <>
       <form action="submit" className="grid justify-items-center">
@@ -86,22 +82,21 @@ const Character = ({ content, editor, setContent }: Props) => {
           <label className="mx-3 font-bold " htmlFor="race">
             Race
           </label>
-          <Select
+          <ReactSelect
             options={raceOptions}
-            onChange={(e) => setRace(raceOptions.value)}
-            getOptionLabel={(option) => `${option.label} --> ${option.special}`}
+            onChange={onRaceChange}
             className="p-1 mx-2 mb-4 font-bold text-black shadow-xl"
           />
 
           <label className="mx-3 font-bold ">Class</label>
-          <Select
-            options={classOptions}
-            getOptionLabel={(option) => `${option.label} --> ${option.special}`}
-            className="p-1 mx-2 mb-4 font-bold text-black shadow-xl"
-          />
+          <ReactSelect options={classOptions} className="p-1 mx-2 mb-4 font-bold text-black shadow-xl" />
 
           <label className="mx-3 font-bold "> Homeland </label>
-          <Select options={homelandOptions} className="p-1 mx-2 mb-4 font-bold text-black shadow-xl" />
+          <ReactSelect
+            isSearchable
+            options={homelandOptions}
+            className="p-1 mx-2 mb-4 font-bold text-black shadow-xl"
+          />
         </div>
       </form>
       <CharacterOriginStory
