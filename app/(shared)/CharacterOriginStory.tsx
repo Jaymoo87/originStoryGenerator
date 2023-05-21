@@ -36,7 +36,9 @@ const CharacterOriginStory = ({ characterName, age, race, characterClass, homela
   const postAiContent = async () => {
     editor.chain().focus().setContent('Generating Your Life. Wait a Moment...').run();
 
-    const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/openai`, {
+    // NEXT_PUBLIC_URL for devlopment
+
+    const response = await fetch(`${process.env.PUBLIC_URL}/api/openai`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
