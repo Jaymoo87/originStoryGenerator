@@ -1,9 +1,6 @@
 import React from 'react';
 
-import ListItem from '@tiptap/extension-list-item';
-
-import { Editor, EditorContent, useEditor } from '@tiptap/react';
-import StarterKit from '@tiptap/starter-kit';
+import { Editor } from '@tiptap/react';
 
 import { TbLetterH, TbBold, TbItalic, TbStrikethrough, TbList, TbListNumbers } from 'react-icons/tb';
 import { FaParagraph } from 'react-icons/fa';

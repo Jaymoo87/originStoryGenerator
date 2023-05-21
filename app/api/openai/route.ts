@@ -20,7 +20,7 @@ export async function POST(request: Request) {
       messages: [
         {
           role: 'user',
-          content: `Create a dungeons and dragons character origin story for ${characterName}, a ${age} year old ${race} ${characterClass} from ${homeland} with html tags `,
+          content: `Create a 5 paragraph dungeons and dragons character origin story for ${characterName}, a ${age} year old ${race} ${characterClass} from ${homeland} with html tags `,
         },
         {
           role: 'system',

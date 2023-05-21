@@ -1,6 +1,6 @@
 import React from 'react';
 import Character from './(home)/Character';
-import CharacterOriginStory from './(shared)/CharacterOriginStory';
+
 import { Editor } from '@tiptap/react';
 
 type Props = {

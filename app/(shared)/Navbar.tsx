@@ -1,11 +1,8 @@
 import React from 'react';
 
 import Link from 'next/link';
-import Image from 'next/image';
 
 import SocialLinks from './SocialLinks';
-
-import Banner from '../../public/assets/dndbanner2.png';
 
 type Props = {};
 
@@ -35,7 +32,9 @@ const Navbar = (props: Props) => {
       </div>
       <div className="flex justify-between gap-8 mx-10 mt-5 mb-4">
         <div className="basis-2/3 md:mt-3">
-          <h1 className="text-3xl font-bold md:text-5xl">What Is Your Origin Story?</h1>
+          <h1 className="p-4 mx-4 text-3xl font-bold text-white bg-opacity-50 rounded-lg bg-slate-800 md:text-5xl">
+            What Is Your Origin Story?
+          </h1>
           <p className="mt-3 text-sm">Ai generated character origin stories</p>
         </div>
       </div>

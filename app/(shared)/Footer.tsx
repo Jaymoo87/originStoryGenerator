@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 
 const Footer = () => {
@@ -7,22 +8,29 @@ const Footer = () => {
         <div className="mt-16 sm:mt-0 basis-1/2">
           <h4 className="font-bold">Where Is Your Homeland?</h4>
           <p className="my-5">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, veritatis dolores earum placeat rem culpa
-            ducimus suscipit doloribus autem assumenda reprehenderit sapiente praesentium voluptate perspiciatis
-            distinctio qui veniam maxime voluptatibus.
+            There is no database or way to save your generated orgin story through this site. you may edit it and copy
+            and paste it wherever you would like.
           </p>
-          <p>© Blog of the Future All Rights Reserved.</p>
+          <p>© Orgin Generator All Rights Reserved.</p>
         </div>
         <div className="mt-16 sm:mt-0 basis-1/3">
           <h4 className="font-bold">Links</h4>
-          <p className="my-5">Lorem ipsum dolor sit amet</p>
-          <p className="my-5">Another Link</p>
-          <p>reprehenderit sapiente praesentium </p>
+          <Link rel="stylesheet" href="https://openai.com">
+            <p className="my-5">openai</p>
+          </Link>
+          <Link href="https://nextjs.org/">
+            <p className="my-5">NextJs</p>
+          </Link>
+          <Link href={'https://www.dndbeyond.com/'}>
+            <p>DND Beyond </p>
+          </Link>
         </div>
         <div className="mt-16 sm:mt-0 basis-1/2">
-          <h4 className="font-bold">Contact Us</h4>
-          <p className="my-5">maxime voluptatibus</p>
-          <p>(555).555.5555</p>
+          <h4 className="font-bold">Contact Me</h4>
+          <p className="my-5">justin.murrah.dev@gmail.com</p>
+          <Link href="https://github.com/Jaymoo87">
+            <p>Github</p>
+          </Link>
         </div>
       </div>
     </footer>
