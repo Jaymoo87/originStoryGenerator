@@ -43,7 +43,6 @@ const CharacterOriginStory = ({ characterName, age, race, characterClass, homela
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
-        'Access-Control-Allow-Origin': 'https://origin-story-generator.vercel.app/',
       },
       body: JSON.stringify({
         characterName,
