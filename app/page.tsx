@@ -3,30 +3,12 @@ import Character from './(home)/Character';
 
 import { Editor } from '@tiptap/react';
 
-type Props = {
-  editor: Editor | null;
-  setContent: (content: string) => void;
-  content: string;
-  characterName: string;
-  age: number;
-  race: string;
-  characterClass: string;
-  homeland: string;
-};
+type Props = {};
 
-const Home = ({ editor, content, characterClass, characterName, age, homeland, race, setContent }: Props) => {
+const Home = (props: Props) => {
   return (
     <div className="h-screen">
-      <Character
-        editor={editor}
-        content={content}
-        characterClass={characterClass}
-        characterName={characterName}
-        age={age}
-        homeland={homeland}
-        race={race}
-        setContent={setContent}
-      />
+      <Character />
     </div>
   );
 };

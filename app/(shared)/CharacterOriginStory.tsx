@@ -10,7 +10,6 @@ import StarterKit from '@tiptap/starter-kit';
 import EditorMenuBar from './EditorMenuBar';
 
 type Props = {
-  content: string;
   contentError: string;
   characterName: string;
   age: number;

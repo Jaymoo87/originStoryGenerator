@@ -6,16 +6,7 @@ import { Editor } from '@tiptap/react';
 import { characterOptions } from '@/public/data/CharacterData';
 import CharacterOriginStory from '../(shared)/CharacterOriginStory';
 
-type Props = {
-  setContent: (content: string) => void;
-  editor: Editor | null;
-  content: string;
-  characterName: string;
-  age: number;
-  race: string;
-  characterClass: string;
-  homeland: string;
-};
+type Props = {};
 interface Character {
   characterName: string;
   age: number;
@@ -24,8 +15,8 @@ interface Character {
   homeland: string;
 }
 
-const Character = ({ content }: Props) => {
-  const [characterName, setCharacterName] = useState<string>('');
+const Character = (props: Props) => {
+  const [newCharacterName, setNewCharacterName] = useState<string>('');
   const [age, setAge] = useState<number>(0);
   const [race, setRace] = useState<string>('');
   const [characterClass, setCharacterClass] = useState<string>('');
@@ -45,9 +36,9 @@ const Character = ({ content }: Props) => {
               Name
             </label>
             <input
-              value={characterName}
+              value={newCharacterName}
               className="p-1 mx-2 mb-4 text-black rounded-lg focus:outline-stone-200 hover:shadow-xl "
-              onChange={(e) => setCharacterName(e.target.value)}
+              onChange={(e) => setNewCharacterName(e.target.value)}
               placeholder="Name"
               id="name"
             />
@@ -75,7 +66,7 @@ const Character = ({ content }: Props) => {
               {raceOptions &&
                 raceOptions.map((r) => (
                   <>
-                    <option>{r.label}</option>
+                    <option key={`race-key-${r.value}`}>{r.label}</option>
                   </>
                 ))}
             </select>
@@ -90,7 +81,7 @@ const Character = ({ content }: Props) => {
               {classOptions &&
                 classOptions.map((c) => (
                   <>
-                    <option>{c.label}</option>
+                    <option key={`class-key-${c.value}`}>{c.label}</option>
                   </>
                 ))}
             </select>
@@ -105,7 +96,7 @@ const Character = ({ content }: Props) => {
               {homelandOptions &&
                 homelandOptions.map((h) => (
                   <>
-                    <option>{h.label}</option>
+                    <option key={`homland-key-${h.value}`}>{h.label}</option>
                   </>
                 ))}
             </select>
@@ -114,8 +105,7 @@ const Character = ({ content }: Props) => {
       </div>
       <CharacterOriginStory
         contentError={'no content to display'}
-        content={content}
-        characterName={characterName}
+        characterName={newCharacterName}
         characterClass={characterClass}
         age={age}
         race={race}
