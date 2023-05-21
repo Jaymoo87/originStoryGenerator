@@ -38,7 +38,7 @@ const CharacterOriginStory = ({ characterName, age, race, characterClass, homela
 
     // NEXT_PUBLIC_URL for devlopment
 
-    const response = await fetch(`http://api.openai.com/v1/chat/completions `, {
+    const response = await fetch(`https://api.openai.com/v1/chat/completions `, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
