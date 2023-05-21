@@ -12,10 +12,11 @@ const openai = new OpenAIApi(configuration);
 
 export async function POST(request: Request, res: any) {
   try {
+    // res.headers.set('Access-Control-Allow-Origin', 'https://origin-story-generator.vercel.app');
+    // res.headers.set('Access-Control-Allow-Methods', 'POST');
+    // res.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
     ///  add different variables for character stats and other information to send to chatgpt request. ex: {var1, var2, role}
-    res.headers.set('Access-Control-Allow-Origin', 'https://origin-story-generator.vercel.app');
-    res.headers.set('Access-Control-Allow-Methods', 'POST');
-    res.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     const { role, characterName, characterClass, age, race, homeland } = await request.json();
     const aiRes: AxiosResponse<CreateChatCompletionResponse, any> = await openai.createChatCompletion({
       model: 'gpt-3.5-turbo',
@@ -34,7 +35,14 @@ export async function POST(request: Request, res: any) {
       {
         content: aiRes.data.choices[0].message?.content,
       },
-      { status: 200 }
+      {
+        status: 200,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET, POST',
+          'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+        },
+      }
     );
   } catch (error) {
     console.error('req error', error);
