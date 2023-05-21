@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
   title: 'Origin Story Creator',
-  description: 'Create a Dungeons and Dragons Origin Story',
+  description: 'Create a Dungeons and Dragons Origin Story with AI',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
