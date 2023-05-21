@@ -10,7 +10,7 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 
-export async function POST(request: Request) {
+export async function POST(request: Request, response: any) {
   try {
     ///  add different variables for character stats and other information to send to chatgpt request. ex: {var1, var2, role}
 
