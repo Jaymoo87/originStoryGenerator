@@ -43,7 +43,7 @@ const CharacterOriginStory = ({ characterName, age, race, characterClass, homela
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
-        'Access-Control-Allow_Origin': 'no-cors',
+        'Access-Control-Allow_Origin': '*',
       },
       body: JSON.stringify({
         characterName,
