@@ -7,7 +7,7 @@ module.exports = {
   async headers() {
     return [
       {
-        source: '/api/:path*',
+        source: '/api/openai',
         headers: [
           { key: 'Access-Control-Allow-Credentials', value: 'true' },
           { key: 'Access-Control-Allow-Origin', value: '*' },
@@ -27,8 +27,8 @@ module.exports = {
   async rewrites() {
     return [
       {
-        source: '/api/:path*',
-        destination: 'https://api.openai.com/:path*',
+        source: '/api/openai',
+        destination: 'https://api.openai.com/v1/chat/completions',
       },
     ];
   },
