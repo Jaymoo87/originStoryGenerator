@@ -79,14 +79,14 @@ export async function POST(request: Request, res: any) {
               content: `${role || 'I am a helpful assistant'}. Write with html tags`,
             },
           ],
-        },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
-            'Access-Control-Allow-Origin': '*',
-          },
         }
+        // {
+        //   headers: {
+        //     'Content-Type': 'application/json',
+        //     Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+        //     'Access-Control-Allow-Origin': '*',
+        //   },
+        // }
       );
       return NextResponse.json(
         {

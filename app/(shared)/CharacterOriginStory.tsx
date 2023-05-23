@@ -8,6 +8,7 @@ import { RocketLaunchIcon } from '@heroicons/react/24/solid';
 import { SiOpenai } from 'react-icons/si';
 import StarterKit from '@tiptap/starter-kit';
 import EditorMenuBar from './EditorMenuBar';
+import { POST } from '../api/openai/route';
 
 type Props = {
   contentError: string;
