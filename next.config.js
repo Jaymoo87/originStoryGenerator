@@ -23,13 +23,14 @@ module.exports = {
   },
 };
 
-module.exports = {
-  async rewrites() {
+module.exports = () => {
+  const rewrites = () => {
     return [
       {
         source: '/api/openai',
-        destination: 'https://api.openai.com/v1/chat/completions',
+        destination: 'https://api.openai.com',
       },
     ];
-  },
+  };
+  return { rewrites };
 };
