@@ -8,7 +8,6 @@ import { RocketLaunchIcon } from '@heroicons/react/24/solid';
 import { SiOpenai } from 'react-icons/si';
 import StarterKit from '@tiptap/starter-kit';
 import EditorMenuBar from './EditorMenuBar';
-import { POST } from '../api/openai/route';
 
 type Props = {
   contentError: string;
@@ -39,7 +38,7 @@ const CharacterOriginStory = ({ characterName, age, race, characterClass, homela
 
     // NEXT_PUBLIC_URL for devlopment
 
-    const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/openai`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/openai/route`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
