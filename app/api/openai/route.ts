@@ -66,19 +66,28 @@ export async function POST(request: Request, res: any) {
 
       ///  add different variables for character stats and other information to send to chatgpt request. ex: {var1, var2, role}
       const { role, characterName, characterClass, age, race, homeland } = await request.json();
-      const aiRes: AxiosResponse<CreateChatCompletionResponse, any> = await openai.createChatCompletion({
-        model: 'gpt-3.5-turbo',
-        messages: [
-          {
-            role: 'user',
-            content: `Create a 5 paragraph dungeons and dragons character origin story for ${characterName}, a ${age} year old ${race} ${characterClass} from ${homeland} with html tags `,
+      const aiRes: AxiosResponse<CreateChatCompletionResponse, any> = await openai.createChatCompletion(
+        {
+          model: 'gpt-3.5-turbo',
+          messages: [
+            {
+              role: 'user',
+              content: `Create a 5 paragraph dungeons and dragons character origin story for ${characterName}, a ${age} year old ${race} ${characterClass} from ${homeland} with html tags `,
+            },
+            {
+              role: 'system',
+              content: `${role || 'I am a helpful assistant'}. Write with html tags`,
+            },
+          ],
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+            'Access-Control-Allow-Origin': '*',
           },
-          {
-            role: 'system',
-            content: `${role || 'I am a helpful assistant'}. Write with html tags`,
-          },
-        ],
-      });
+        }
+      );
       return NextResponse.json(
         {
           content: aiRes.data.choices[0].message?.content,
