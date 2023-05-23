@@ -38,7 +38,7 @@ const CharacterOriginStory = ({ characterName, age, race, characterClass, homela
 
     // NEXT_PUBLIC_URL for devlopment
 
-    const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/openai/route`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/openai`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

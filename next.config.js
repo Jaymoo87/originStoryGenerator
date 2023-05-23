@@ -32,7 +32,7 @@ module.exports = () => {
     return [
       {
         source: '/api/openai/route',
-        destination: 'https://api.openai.com/v1/chat/completions',
+        destination: 'https://api.openai.com',
       },
     ];
   };
