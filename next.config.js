@@ -28,7 +28,7 @@ module.exports = {
     return [
       {
         source: '/api/openai',
-        destination: 'https://api.openai.com',
+        destination: 'https://api.openai.com/v1/chat/completions',
       },
     ];
   },
