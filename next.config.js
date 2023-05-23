@@ -27,7 +27,7 @@ module.exports = () => {
   const rewrites = () => {
     return [
       {
-        source: '/api/openai',
+        source: '/api/openai/route',
         destination: 'https://api.openai.com',
       },
     ];
